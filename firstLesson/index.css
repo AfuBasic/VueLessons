@@ -1,0 +1,33 @@
+body {
+    margin: 50px;
+}
+
+#app div,
+#app ul {
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 0 5px #e1e1e1;
+    list-style-type: none;
+}
+
+#app li {
+    margin: 10px 20px;
+}
+
+#app div label {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 10px 0;
+}
+
+#app div input {
+    padding: 5px;
+    margin: 0 0 10px 0;
+    display: block;
+    width: 100%;
+}
+
+#app div button {
+    display: inline-block;
+}
