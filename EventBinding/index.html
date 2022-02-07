@@ -21,8 +21,16 @@
         </div>
         <p>Result: {{ counter }}</p>
         <p>Your Name is: {{ name }}</p>
-
-        <input type="text" placeholder="Your Name" v-on:input="updateName" />
+        <div>
+            <input type="text" placeholder="Your Name" v-on:input="updateName" />
+        </div>
+        <hr />
+        <div>
+            <form v-on:submit.prevent="submitForm">
+                <input type="text" />
+                <button type="submit">Submit</button>
+            </form>
+        </div>
     </section>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="app.js"></script>
