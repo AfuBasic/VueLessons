@@ -1,0 +1,48 @@
+body {
+    margin: 20px;
+}
+
+header {
+    padding: 30px;
+    text-align: center;
+    background-color: rgb(106, 189, 161);
+    color: white;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+#events {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #ccc;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+#events h2 {
+    border-bottom: 4px solid #bbb;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+#events p {
+    padding: 10px;
+    background-color: rgb(106, 189, 161);
+    border-radius: 10px;
+    color: white;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+}
+
+.buttons button {
+    background-color: blue;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}

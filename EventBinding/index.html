@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>My Second Vue</title>
+</head>
+
+<body>
+    <header>
+        <h1>Vue Events</h1>
+    </header>
+    <section id="events">
+        <h2>Events in Action</h2>
+        <div class="buttons">
+            <button v-on:click="add">Add</button>
+            <button v-on:click="deduct">Reduce</button>
+        </div>
+        <p>Result: {{ counter }}</p>
+        <p>Your Name is: {{ name }}</p>
+
+        <input type="text" placeholder="Your Name" v-on:input="updateName" />
+    </section>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
