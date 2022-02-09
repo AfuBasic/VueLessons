@@ -43,4 +43,7 @@ button {
     color: white;
     padding: 10px;
     border-radius: 5px;
+    margin: 5px;
+    min-width: 80px;
+    cursor: pointer;
 }

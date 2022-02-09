@@ -21,14 +21,22 @@
         </div>
 
         <div>
+            <button v-on:click="increaseNumber">+5</button>
+            <button v-on:click="decreaseNumber">-5</button>
+            <p>{{ num }}</p>
+        </div>
+
+        <div>
             <input type="text" v-on:keydown="updateInput" />
             <p>{{ output }}</p>
         </div>
 
         <div>
             <input type="text" v-on:keyup.enter="updateCompleteText" />
-            <p>{{ completeText }}</p>
+            <p>{{ showCompleteText }}</p>
         </div>
+
+        <div><button>Reset Input</button></div>
     </section>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="app.js"></script>
