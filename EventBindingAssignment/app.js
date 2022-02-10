@@ -35,8 +35,14 @@ const app = Vue.createApp({
     },
 
     computed: {
-        showCompleteText() {
-            return this.completeText;
+        // showCompleteText() {
+        //     return this.completeText;
+        // },
+    },
+
+    watch: {
+        num(value) {
+            this.num = value > 50 ? 0 : this.num;
         },
     },
 });
