@@ -14,4 +14,6 @@ const app = Vue.createApp({
     },
 });
 
+//Don't forget, you can use v-for to iterate over an object
+
 app.mount("#app");

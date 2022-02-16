@@ -21,7 +21,7 @@
         </div>
         <p v-if="goals.length === 0">No Goals Yets</p>
         <ul v-else>
-            <li v-for="goal in goals">{{ goal }}</li>
+            <li v-for="(goal, index) in goals">{{ index }}. {{ goal }}</li>
         </ul>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
