@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>My First Vue</title>
+</head>
+
+<body>
+    <header>
+        <h2>Vue Lists and Conditional Content</h2>
+    </header>
+    <div id="app">
+        <div>
+            Assignment
+            <hr />
+        </div>
+        <div class="input-box">
+            <input type="text" v-model="enteredValue" />
+            <button @click="addGoal">Add Task</button>
+        </div>
+        <div>
+            <p>No Tasks Yet</p>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
