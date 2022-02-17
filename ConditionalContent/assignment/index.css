@@ -32,7 +32,7 @@ div {
 
 #app p {
     padding: 10px;
-    background-color: rgb(106, 189, 161);
+    background-color: #ccc;
     border-radius: 10px;
     color: white;
 }
@@ -42,7 +42,7 @@ button {
     border: none;
     color: white;
     padding: 10px;
-    border-radius: 0 8px 8px 0;
+    border-radius: 8px;
     min-width: 80px;
     cursor: pointer;
 }
@@ -56,7 +56,7 @@ ul {
 
 li {
     padding: 10px;
-    background: #ccc;
+    background: rgb(106, 189, 161);
     border-radius: 5px;
     margin: 10px 0;
 }
@@ -69,4 +69,8 @@ input {
 div.input-box {
     display: grid;
     grid-template-columns: 1fr auto;
+}
+
+div.input-box button {
+    border-radius: 0 8px 8px 0;
 }

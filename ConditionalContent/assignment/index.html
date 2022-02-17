@@ -19,11 +19,20 @@
             <hr />
         </div>
         <div class="input-box">
-            <input type="text" v-model="enteredValue" />
-            <button @click="addGoal">Add Task</button>
+            <input type="text" v-model="enteredTask" />
+            <button @click="addTask">Add Task</button>
         </div>
         <div>
+            <button @click="toggleList">{{ buttonCaption }} Tasks</button>
+        </div>
+        <div v-if="tasks.length < 1">
             <p>No Tasks Yet</p>
+        </div>
+
+        <div v-else v-show="listShown">
+            <ul>
+                <li v-for="task in tasks">{{ task }}</li>
+            </ul>
         </div>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
