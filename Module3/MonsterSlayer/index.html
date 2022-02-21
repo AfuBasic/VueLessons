@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monster Slayers</title>
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+    <header>
+        <div>
+            <h3>Monster Slayer</h3>
+        </div>
+    </header>
+    <main id="game">
+        <div class="monster">
+            <h3>Monster Health</h3>
+            <div class="healthbar">
+                <div class="healthbar-value" :style="monsterBar"></div>
+            </div>
+        </div>
+
+        <div class="slayer">
+            <h3>Your Health</h3>
+            <div class="healthbar">
+                <div class="healthbar-value" :style="playerBar"></div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button @click="attackMonster">Attack</button>
+            <button @click="specialAttack" :disabled="specialAttackAvailable">
+          Special Attack
+        </button>
+            <button @click="healPlayer">Heal</button>
+            <button>Surrender</button>
+        </div>
+    </main>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

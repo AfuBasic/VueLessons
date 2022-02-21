@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;1,100;1,300&display=swap");
+body {
+    margin: 0;
+    font-family: "Poppins";
+}
+
+h2,
+h3,
+h4 {
+    margin: 0;
+}
+
+header {
+    background: burlywood;
+    margin: 0;
+    padding: 15px;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+main {
+    padding: 20px;
+}
+
+.monster,
+.slayer {
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #e1e1e1;
+    padding: 15px;
+    margin: 20px;
+    text-align: center;
+}
+
+.healthbar {
+    height: 40px;
+    border: 1px solid #333;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.healthbar-value {
+    background: green;
+    width: 100%;
+    transition: 0.3s;
+    height: 45px;
+}
+
+.actions {
+    display: grid;
+    justify-content: center;
+    gap: 20px;
+}
+
+.actions button {
+    padding: 15px;
+    border: none;
+    min-width: 150px;
+    background-color: #093783;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.actions button:disabled {
+    background: #ccc;
+    color: black;
+}
