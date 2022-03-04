@@ -28,6 +28,18 @@ const app = Vue.createApp({
         },
     },
 
+    watch: {
+        "health.player" (value) {
+            if (value <= 0 && this.health.monster <= 0) {
+                //Draw
+            } else if (value <= 0) {
+                //Player Lost
+            }
+        },
+
+        "health.monster" (value) {},
+    },
+
     methods: {
         attackMonster() {
             const attackValue = getRamdonValue(5, 15);
