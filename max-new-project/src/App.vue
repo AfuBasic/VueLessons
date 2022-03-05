@@ -2,14 +2,17 @@
   <section>
     <h2>My Friends</h2>
     <ul>
-      <friend-list></friend-list>
-      <friend-list></friend-list>
-      <friend-list></friend-list>
-      <friend-list></friend-list>
-      <friend-list></friend-list>
-      <friend-list></friend-list>
-      <friend-list></friend-list>
-      <friend-list></friend-list>
+      <friend-list
+        name="Afuwape Tunde"
+        email-address="afuidris@gmail.com"
+        phone-number="08087987978"
+      ></friend-list>
+
+      <friend-list
+        name="Afuwape Biodun"
+        email-address="afubiodun@gmail.com"
+        phone-number="080974667787"
+      ></friend-list>
     </ul>
   </section>
 </template>
