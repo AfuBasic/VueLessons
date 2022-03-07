@@ -6,12 +6,14 @@
         name="Afuwape Tunde"
         email-address="afuidris@gmail.com"
         phone-number="08087987978"
+        is-favorite="0"
       ></friend-list>
 
       <friend-list
         name="Afuwape Biodun"
         email-address="afubiodun@gmail.com"
         phone-number="080974667787"
+        is-favorite="0"
       ></friend-list>
     </ul>
   </section>
@@ -20,22 +22,7 @@
 <script>
 export default {
   data() {
-    return {
-      friends: [
-        {
-          id: "tunde",
-          name: "Afuwape Tunde",
-          phone: "09087876898",
-          email: "email@owner.com",
-        },
-        {
-          id: "tunde",
-          name: "Afuwape Tunde",
-          phone: "09087876898",
-          email: "email@owner.com",
-        },
-      ],
-    };
+    return {};
   },
 };
 </script>
