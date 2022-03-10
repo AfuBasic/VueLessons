@@ -3,17 +3,14 @@
     <h2>My Friends</h2>
     <ul>
       <friend-list
-        name="Afuwape Tunde"
-        email-address="afuidris@gmail.com"
-        phone-number="08087987978"
-        is-favorite="0"
-      ></friend-list>
-
-      <friend-list
-        name="Afuwape Biodun"
-        email-address="afubiodun@gmail.com"
-        phone-number="080974667787"
-        is-favorite="0"
+        v-for="friend in friends"
+        :name="friend.name"
+        :email-address="friend.email"
+        :phone-number="friend.phone"
+        :is-favorite="friend.isFavorite"
+        :key="friend.id"
+        :id="friend.id"
+        @toggle-favorite="toggleFavoriteStatus"
       ></friend-list>
     </ul>
   </section>
@@ -22,7 +19,33 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      friends: [
+        {
+          id: "tunde",
+          name: "Afuwape Tunde",
+          email: "afuidris@gmail.com",
+          phone: "0808678798",
+          isFavorite: true,
+        },
+        {
+          id: "biodun",
+          name: "Afuwape Abiodun",
+          email: "afubiodun@gmail.com",
+          phone: "0808678798",
+          isFavorite: false,
+        },
+      ],
+    };
+  },
+
+  methods: {
+    toggleFavoriteStatus(friendId) {
+      const clickedFriend = this.friends.find(
+        (friend) => friend.id === friendId
+      );
+      clickedFriend.isFavorite = !clickedFriend.isFavorite;
+    },
   },
 };
 </script>
