@@ -1,23 +1,32 @@
 <template>
-  <section>
-    <h2>My Friends</h2>
-    <ul>
-      <friend-list
-        v-for="friend in friends"
-        :name="friend.name"
-        :email-address="friend.email"
-        :phone-number="friend.phone"
-        :is-favorite="friend.isFavorite"
-        :key="friend.id"
-        :id="friend.id"
-        @toggle-favorite="toggleFavoriteStatus"
-      ></friend-list>
-    </ul>
-  </section>
+  <main>
+    <section>
+      <h2>Create New Friend</h2>
+      <new-friend @add-friend="addFriend"></new-friend>
+    </section>
+    <section>
+      <h2>My Friends</h2>
+      <ul>
+        <friend-list
+          v-for="friend in friends"
+          :name="friend.name"
+          :email-address="friend.email"
+          :phone-number="friend.phone"
+          :is-favorite="friend.isFavorite"
+          :key="friend.id"
+          :id="friend.id"
+          @toggle-favorite="toggleFavoriteStatus"
+          @delete="deleteFriend"
+        ></friend-list>
+      </ul>
+    </section>
+  </main>
 </template>
 
 <script>
+import NewFriend from "./components/NewFriend.vue";
 export default {
+  components: { NewFriend },
   data() {
     return {
       friends: [
@@ -45,6 +54,17 @@ export default {
         (friend) => friend.id === friendId
       );
       clickedFriend.isFavorite = !clickedFriend.isFavorite;
+    },
+
+    addFriend(friend) {
+      let friendData = friend;
+      friendData.id = new Date().toISOString();
+      friendData.isFavorite = false;
+      this.friends.push(friendData);
+    },
+
+    deleteFriend(friendId) {
+      this.friends = this.friends.filter((friend) => friend.id !== friendId);
     },
   },
 };
@@ -89,13 +109,13 @@ ul {
   padding: 0 0 10px 0;
 }
 
-#app li button {
+#app button {
   border: none;
   background: orange;
   color: #eee;
   padding: 10px;
   border-radius: 3px;
-  margin: 0 0 15px 0;
+  margin: 15px;
   cursor: pointer;
 }
 
@@ -103,5 +123,31 @@ ul {
   margin: 20px 0;
   padding: 20px;
   border-radius: 5px;
+}
+
+form {
+  background: #fff;
+  box-shadow: 0 0 5px #eee;
+  border-radius: 5px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 50px;
+}
+
+form .input-field {
+  margin-bottom: 20px;
+}
+
+form .input-field label {
+  display: block;
+}
+
+form input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 5px;
+  border: 1px solid #ded3de;
+  height: 25px;
 }
 </style>
