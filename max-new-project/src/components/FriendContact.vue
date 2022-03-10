@@ -41,6 +41,13 @@ export default {
     },
   },
 
+  emits: {
+    "toggle-favorite": function (id) {
+      if (!id) console.warn("ID is missing");
+      return true;
+    },
+  },
+
   data() {
     return {
       detailsAreVisible: false,
