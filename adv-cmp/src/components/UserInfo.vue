@@ -1,7 +1,7 @@
 <template>
   <section>
     <base-card>
-      <template v-slot:topSlot>
+      <template #topSlot>
         <h3>{{ fullName }}</h3>
         <base-badge :type="role" :caption="role.toUpperCase()"></base-badge>
       </template>

@@ -1,7 +1,9 @@
 <template>
   <div>
     <div>
-      <slot name="topSlot"></slot>
+      <slot name="topSlot">
+        <h2>The Default Content in the Slot</h2>
+      </slot>
     </div>
     <slot></slot>
   </div>
