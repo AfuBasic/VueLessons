@@ -36,8 +36,8 @@ const router = createRouter({
         { path: '/:notfound(.*)', component: NotFound },
     ],
     linkActiveClass: 'active',
-    scrollBehavior(to, from, savedPosition) {
-        console.log(to, from, savedPosition);
+    scrollBehavior(_, _2, savedPosition) {
+        // console.log(to, from, savedPosition);
 
         if (savedPosition) {
             return savedPosition;
@@ -48,6 +48,17 @@ const router = createRouter({
             top: 0,
         };
     },
+});
+
+router.beforeEach((to, from, next) => {
+    console.log('Global Beforeach');
+    console.log(to, from);
+    // if (to.name === 'teams') {
+    //     next();
+    // } else {
+    //     next({ name: 'teams' });
+    // }
+    next();
 });
 
 const app = createApp(App);
