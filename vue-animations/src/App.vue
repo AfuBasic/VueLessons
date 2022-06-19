@@ -4,7 +4,17 @@
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
-    <transition name="para" @enter="beforeEnter">
+    <transition
+      name="para"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+      @enter-cancelled="enterCancelled"
+      @leave-cancelled="leaveCancelled"
+    >
       <p v-if="paraIsVisible">This is only sometimes visible</p>
     </transition>
     <button @click="togglePara">Toggle</button>
@@ -35,6 +45,8 @@ export default {
       animatedBlock: false,
       paraIsVisible: false,
       usersAreVisible: false,
+      enterInterval: null,
+      leaveInterval: null,
     };
   },
   methods: {
@@ -53,8 +65,54 @@ export default {
     animateBlock() {
       this.animatedBlock = true;
     },
+
+    enterCancelled() {
+      console.log('Enter Cancelled');
+      clearInterval(this.enterInterval);
+    },
+    leaveCancelled() {
+      console.log('Leave Cancelled');
+      clearInterval(this.leaveInterval);
+    },
     beforeEnter(el) {
-      console.log(el);
+      console.log('beforeEnter');
+      el.style.opacity = 0;
+    },
+    enter(el, done) {
+      console.log('enter');
+      let round = 1;
+      this.enterInterval = setInterval(() => {
+        el.style.opacity = round * 0.01;
+        round++;
+
+        if (round > 100) {
+          clearInterval(this.enterInterval);
+          done();
+        }
+      }, 20);
+    },
+    afterEnter() {
+      console.log('After Enter');
+    },
+    beforeLeave(el) {
+      console.log('Before Leave');
+      el.style.opacity = 1;
+    },
+    leave(el, done) {
+      console.log('Leave');
+      let round = 1;
+      this.leaveInterval = setInterval(() => {
+        el.style.opacity = 1 - round * 0.01;
+        round++;
+
+        if (round > 100) {
+          clearInterval(this.leaveInterval);
+          done();
+        }
+      }, 20);
+    },
+    afterLeave() {
+      console.log('After Leave');
     },
     togglePara() {
       this.paraIsVisible = !this.paraIsVisible;
@@ -109,34 +167,6 @@ button:active {
 .animate {
   /* transform: translateX(-50px); */
   animation: slide-fade 0.5s ease-out forwards;
-}
-
-.para-enter-from {
-  opacity: 0;
-  transform: translateY(-30px);
-}
-
-.para-enter-active {
-  transition: all 0.5s ease-out;
-}
-
-.para-enter-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.para-leave-from {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.para-leave-active {
-  transition: all 0.5s ease-out;
-}
-
-.para-leave-to {
-  opacity: 0;
-  transform: translateY(-30px);
 }
 
 .fade-button-enter-from,
