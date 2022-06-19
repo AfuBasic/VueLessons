@@ -4,10 +4,17 @@
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
-    <transition name="para">
+    <transition name="para" @enter="beforeEnter">
       <p v-if="paraIsVisible">This is only sometimes visible</p>
     </transition>
     <button @click="togglePara">Toggle</button>
+  </div>
+
+  <div class="container">
+    <transition name="fade-button" mode="out-in">
+      <button @click="showUser" v-if="!usersAreVisible">Show Users</button>
+      <button @click="hideUser" v-else>Hide Users</button>
+    </transition>
   </div>
 
   <base-modal @close="hideDialog" :open="dialogIsVisible">
@@ -27,9 +34,16 @@ export default {
       dialogIsVisible: false,
       animatedBlock: false,
       paraIsVisible: false,
+      usersAreVisible: false,
     };
   },
   methods: {
+    showUser() {
+      this.usersAreVisible = true;
+    },
+    hideUser() {
+      this.usersAreVisible = false;
+    },
     showDialog() {
       this.dialogIsVisible = true;
     },
@@ -39,7 +53,9 @@ export default {
     animateBlock() {
       this.animatedBlock = true;
     },
-
+    beforeEnter(el) {
+      console.log(el);
+    },
     togglePara() {
       this.paraIsVisible = !this.paraIsVisible;
     },
@@ -121,6 +137,24 @@ button:active {
 .para-leave-to {
   opacity: 0;
   transform: translateY(-30px);
+}
+
+.fade-button-enter-from,
+.fade-button-leave-to {
+  opacity: 0;
+}
+
+.fade-button-enter-active {
+  transition: opacity 0.5s ease-in;
+}
+
+.fade-button-leave-active {
+  transition: opacity 0.5s ease-out;
+}
+
+.fade-button-enter-to,
+.fade-button-leave-from {
+  opacity: 1;
 }
 
 @keyframes slide-fade {
