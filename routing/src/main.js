@@ -31,6 +31,12 @@ const router = createRouter({
                 default: UsersList,
                 footer: UsersFooter,
             },
+            beforeEnter(to, from, next) {
+                console.log('Users BeforeEnter');
+                console.log(to, from);
+
+                next();
+            },
         },
 
         { path: '/:notfound(.*)', component: NotFound },
@@ -59,6 +65,11 @@ router.beforeEach((to, from, next) => {
     //     next({ name: 'teams' });
     // }
     next();
+});
+
+router.afterEach((to, from) => {
+    console.log('Global After Each Route Guard');
+    console.log(to, from);
 });
 
 const app = createApp(App);

@@ -10,7 +10,7 @@
           :role="member.role"
         ></user-item>
       </ul>
-      <!-- <router-link to="/teams/t2">Go to Team2</router-link> -->
+      <router-link to="/teams/t2">Go to Team2</router-link>
       <button @click="this.$router.back()">Back</button>
     </section>
   </div>
@@ -37,11 +37,6 @@ export default {
       const selectedTeam = this.teams.find((team) => team.id === teamId);
       const selectedMembers = [];
 
-      // if (!selectedTeam) {
-      //   // Add this block
-      //   return;
-      // }
-
       for (const member of selectedTeam.members) {
         const selectedUser = this.users.find((user) => user.id === member);
         selectedMembers.push(selectedUser);
@@ -55,7 +50,11 @@ export default {
   created() {
     this.loadTeamMembers(this.teamId);
   },
-
+  beforeRouteUpdate(to, from, next) {
+    console.log('BeforeRouteupdate guard');
+    console.log(to, from);
+    next();
+  },
   watch: {
     teamId(newId) {
       this.loadTeamMembers(newId);
