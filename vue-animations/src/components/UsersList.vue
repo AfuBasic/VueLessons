@@ -21,7 +21,7 @@ export default {
 
   methods: {
     addUser() {
-      this.users.unshift(this.user);
+      this.users.push(this.user);
     },
     removeUser(user) {
       this.users = this.users.filter((usr) => usr !== user);
@@ -64,6 +64,7 @@ li {
 
 .user-list-leave-active {
   transition: all 1s ease-in;
+  position: absolute;
 }
 
 .user-list-leave-to {
@@ -72,5 +73,9 @@ li {
   border: 1px solid red;
   background: red;
   color: white;
+}
+
+.user-list-move {
+  transition: transform 0.3s ease;
 }
 </style>
