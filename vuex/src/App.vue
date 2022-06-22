@@ -1,16 +1,20 @@
 <template>
   <base-container title="Vuex">
-    <h1>{{ $store.state.counter }}</h1>
-    <button>Add 1</button>
-  </base-container>
+    <base-counter></base-counter>
+    <change-counter></change-counter
+  ></base-container>
 </template>
 
 <script>
 import BaseContainer from './components/BaseContainer.vue';
+import BaseCounter from './components/BaseCounter.vue';
+import ChangeCounter from './components/ChangeCounter.vue';
 
 export default {
   components: {
     BaseContainer,
+    BaseCounter,
+    ChangeCounter,
   },
 };
 </script>
