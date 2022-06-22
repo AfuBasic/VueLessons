@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ counter }}</h1>
-    <button @click="addOne">Add 1</button>
+    <button @click="addOne">Add 10</button>
   </div>
 </template>
 
@@ -14,7 +14,11 @@ export default {
   },
   methods: {
     addOne() {
-      this.$store.commit('increment');
+      //   this.$store.commit('increase', { value: 10 });
+      this.$store.commit({
+        type: 'increase',
+        value: 10,
+      });
     },
   },
 };
