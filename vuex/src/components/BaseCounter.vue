@@ -1,33 +1,36 @@
 <template>
   <div>
-    <h1>{{ counter }}</h1>
-    <button @click="addOne">Add 10</button>
+    <h1>{{ normalizedCounter }}</h1>
+    <button @click="increase({ value: 10 })">Add 10</button>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   computed: {
     // counter() {
     //   return this.$store.getters.normalizedCounter;
     // },
-    ...mapGetters(['finalCounter']),
+    ...mapGetters(['normalizedCounter']),
   },
   methods: {
-    addOne() {
-      //   this.$store.commit('increase', { value: 10 });
-      //   this.$store.commit({
-      //     type: 'increase',
-      //     value: 10,
-      //   });
+    //   this.$store.commit('increase', { value: 10 });
+    //   this.$store.commit({
+    //     type: 'increase',
+    //     value: 10,
+    //   });
 
-      this.$store.dispatch({
-        type: 'increase',
-        value: 10,
-      });
-    },
+    //   this.$store.dispatch({
+    //     type: 'increase',
+    //     value: 10,
+    //   });
+    // ...mapActions(['increase']),
+
+    ...mapActions({
+      increase: 'increase',
+    }),
   },
 };
 </script>
