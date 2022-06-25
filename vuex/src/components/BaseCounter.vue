@@ -6,16 +6,24 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   computed: {
-    counter() {
-      return this.$store.getters.normalizedCounter;
-    },
+    // counter() {
+    //   return this.$store.getters.normalizedCounter;
+    // },
+    ...mapGetters(['finalCounter']),
   },
   methods: {
     addOne() {
       //   this.$store.commit('increase', { value: 10 });
-      this.$store.commit({
+      //   this.$store.commit({
+      //     type: 'increase',
+      //     value: 10,
+      //   });
+
+      this.$store.dispatch({
         type: 'increase',
         value: 10,
       });
