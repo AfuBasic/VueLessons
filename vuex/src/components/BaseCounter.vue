@@ -13,7 +13,7 @@ export default {
     // counter() {
     //   return this.$store.getters.normalizedCounter;
     // },
-    ...mapGetters(['normalizedCounter']),
+    ...mapGetters('numbers', ['normalizedCounter']),
   },
   methods: {
     //   this.$store.commit('increase', { value: 10 });
@@ -28,7 +28,7 @@ export default {
     //   });
     // ...mapActions(['increase']),
 
-    ...mapActions({
+    ...mapActions('numbers', {
       increase: 'increase',
     }),
   },
