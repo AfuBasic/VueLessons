@@ -1,6 +1,8 @@
 <template>
   <nav-bar></nav-bar>
-  <router-view></router-view>
+  <div class="main-content">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
@@ -22,5 +24,9 @@ body {
 
 * {
   font-family: 'roboto';
+}
+
+.main-content {
+  padding: 20px 20em;
 }
 </style>
