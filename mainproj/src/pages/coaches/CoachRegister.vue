@@ -1,3 +1,5 @@
 <template>
-  <div>Register as a coach</div>
+  <section>
+    <h2>Register as a coach</h2>
+  </section>
 </template>
