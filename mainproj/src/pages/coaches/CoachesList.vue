@@ -3,15 +3,45 @@
     <div class="filter-control">Filter Coaches</div>
     <div class="action-control">
       <button>Refresh Coaches</button>
-      <router-link to="/register">New Coach</router-link>
+      <base-button to="/register" title="New Coach" />
     </div>
   </section>
   <section id="coaches">
-    <ul>
-      <li>Coaches List</li>
+    <ul v-if="hasCoaches">
+      <coach-item
+        v-for="coach in filteredCoaches"
+        :key="coach.id"
+        :first-name="coach.firstName"
+        :last-name="coach.lastName"
+        :rate="coach.hourlyRate"
+        :description="coach.description"
+        :areas="coach.areas"
+        :id="coach.id"
+      ></coach-item>
     </ul>
+
+    <h3 v-else>No Coaches Found!</h3>
   </section>
 </template>
+
+<script>
+import CoachItem from '../../components/coaches/CoachItem.vue';
+
+export default {
+  components: {
+    CoachItem,
+  },
+  computed: {
+    filteredCoaches() {
+      return this.$store.getters['coaches/coaches'];
+    },
+
+    hasCoaches() {
+      return this.$store.getters['coaches/hasCoaches'];
+    },
+  },
+};
+</script>
 
 <style scoped>
 section#filter {
@@ -35,12 +65,12 @@ div.action-control button {
   margin-right: 10px;
 }
 
-div.action-control a {
-  display: inline-block;
-  text-decoration: none;
-  background: #df7861;
-  font-size: 12px;
-  color: #fff;
-  padding: 8px 16px;
+section#coaches ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  gap: 20px;
 }
 </style>
