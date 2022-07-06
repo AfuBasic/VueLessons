@@ -1,9 +1,11 @@
 <template>
   <section id="filter">
-    <div class="filter-control">Filter Coaches</div>
     <div class="action-control">
       <button>Refresh Coaches</button>
       <base-button to="/register" title="New Coach" />
+    </div>
+    <div class="filter-control">
+      <coach-filter @change-filter="setFilters"></coach-filter>
     </div>
   </section>
   <section id="coaches">
@@ -26,18 +28,50 @@
 
 <script>
 import CoachItem from '../../components/coaches/CoachItem.vue';
+import CoachFilter from '../../components/coaches/CoachFilter.vue';
 
 export default {
   components: {
     CoachItem,
+    CoachFilter,
+  },
+  data() {
+    return {
+      activeFilters: {
+        frontend: true,
+        backend: true,
+        career: true,
+      },
+    };
   },
   computed: {
     filteredCoaches() {
-      return this.$store.getters['coaches/coaches'];
+      const coaches = this.$store.getters['coaches/coaches'];
+      return coaches.filter((coach) => {
+        if (this.activeFilters.frontend && coach.areas.includes('frontend')) {
+          return true;
+        }
+
+        if (this.activeFilters.backend && coach.areas.includes('backend')) {
+          return true;
+        }
+
+        if (this.activeFilters.career && coach.areas.includes('career')) {
+          return true;
+        }
+
+        return false;
+      });
     },
 
     hasCoaches() {
       return this.$store.getters['coaches/hasCoaches'];
+    },
+  },
+
+  methods: {
+    setFilters(updatedFilters) {
+      this.activeFilters = updatedFilters;
     },
   },
 };
@@ -46,7 +80,7 @@ export default {
 <style scoped>
 section#filter {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 section#filter div {
@@ -55,6 +89,7 @@ section#filter div {
 
 div.action-control {
   text-align: right;
+  margin-bottom: 20px;
 }
 
 div.action-control button {
