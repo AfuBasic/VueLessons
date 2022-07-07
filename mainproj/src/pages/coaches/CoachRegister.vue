@@ -12,7 +12,6 @@ import CoachForm from '../../components/coaches/CoachForm.vue';
 
 export default {
   components: { CoachForm },
-
   methods: {
     saveData(data) {
       this.$store.dispatch('coaches/addCoachAction', data);
