@@ -1,7 +1,7 @@
 export default {
-    addCoachAction(context, payload) {
+    async addCoachAction(context, payload) {
+        const userId = context.rootGetters.userId;
         const coachData = {
-            id: context.rootGetters.userId,
             firstName: payload.first,
             lastName: payload.last,
             description: payload.desc,
@@ -9,6 +9,22 @@ export default {
             hourlyRate: payload.rate,
         };
 
-        context.commit('addCoach', coachData);
+        const response = await fetch(
+            `https://vue-http-demo-451f8-default-rtdb.firebaseio.com/coaches/${userId}.json`, {
+                method: 'PUT',
+                body: JSON.stringify(coachData),
+            }
+        );
+
+        //const responseData = await response.json();
+
+        if (!response.ok) {
+            //error
+        }
+
+        context.commit('addCoach', {
+            ...coachData,
+            id: userId,
+        });
     },
 };
