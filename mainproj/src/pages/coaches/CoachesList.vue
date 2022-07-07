@@ -2,7 +2,7 @@
   <section id="filter">
     <div class="action-control">
       <button>Refresh Coaches</button>
-      <base-button to="/register" title="New Coach" />
+      <base-button v-if="!isCoach" to="/register" title="New Coach" />
     </div>
     <div class="filter-control">
       <coach-filter @change-filter="setFilters"></coach-filter>
@@ -66,6 +66,10 @@ export default {
 
     hasCoaches() {
       return this.$store.getters['coaches/hasCoaches'];
+    },
+
+    isCoach() {
+      return this.$store.getters['coaches/isCoach'];
     },
   },
 
