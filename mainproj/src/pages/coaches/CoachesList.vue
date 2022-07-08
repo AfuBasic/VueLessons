@@ -89,7 +89,12 @@ export default {
 
     async loadCoaches() {
       this.isLoading = true;
-      await this.$store.dispatch('coaches/loadCoaches');
+      try {
+        await this.$store.dispatch('coaches/loadCoaches');
+      } catch (error) {
+        const errorMsg = error.message || 'Something went wrong';
+        alert(errorMsg);
+      }
       this.isLoading = false;
     },
   },
