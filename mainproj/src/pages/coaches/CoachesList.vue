@@ -2,14 +2,22 @@
   <section id="filter">
     <div class="action-control">
       <button>Refresh Coaches</button>
-      <base-button v-if="!isCoach" to="/register" title="New Coach" />
+      <base-button
+        v-if="!isLoading && !isCoach"
+        to="/register"
+        title="New Coach"
+      />
     </div>
     <div class="filter-control">
       <coach-filter @change-filter="setFilters"></coach-filter>
     </div>
   </section>
+
   <section id="coaches">
-    <ul v-if="hasCoaches">
+    <div v-if="isLoading">
+      <base-spinner></base-spinner>
+    </div>
+    <ul v-else-if="hasCoaches">
       <coach-item
         v-for="coach in filteredCoaches"
         :key="coach.id"
@@ -37,6 +45,7 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       activeFilters: {
         frontend: true,
         backend: true,
@@ -65,7 +74,7 @@ export default {
     },
 
     hasCoaches() {
-      return this.$store.getters['coaches/hasCoaches'];
+      return !this.isLoading && this.$store.getters['coaches/hasCoaches'];
     },
 
     isCoach() {
@@ -77,6 +86,16 @@ export default {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
+
+    async loadCoaches() {
+      this.isLoading = true;
+      await this.$store.dispatch('coaches/loadCoaches');
+      this.isLoading = false;
+    },
+  },
+
+  created() {
+    this.loadCoaches();
   },
 };
 </script>
