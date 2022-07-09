@@ -4,7 +4,7 @@
       <header>
         <h2>Requests Received</h2>
       </header>
-      <ul v-if="hasRequests">
+      <ul v-if="!isLoading && hasRequests">
         <request-item
           v-for="request in receivedRequests"
           :key="request.id"
@@ -12,7 +12,10 @@
           :message="request.messages"
         ></request-item>
       </ul>
-      <h3 v-else>You haven't received any requests yet</h3>
+      <h3 v-else-if="hasRequests && !Loading">
+        You haven't received any requests yet
+      </h3>
+      <base-spinner v-else></base-spinner>
     </base-card>
   </section>
 </template>
@@ -24,6 +27,13 @@ export default {
   components: {
     RequestItem,
   },
+
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
+
   computed: {
     receivedRequests() {
       return this.$store.getters['requests/requests'];
@@ -32,6 +42,20 @@ export default {
     hasRequests() {
       return this.$store.getters['requests/hasRequests'];
     },
+  },
+
+  methods: {
+    async loadRequests() {
+      try {
+        await this.$store.dispatch('requests/loadRequests');
+      } catch (error) {
+        alert(error || 'Something went wrong, could not load requests');
+      }
+    },
+  },
+
+  created() {
+    this.loadRequests();
   },
 };
 </script>

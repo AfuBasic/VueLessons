@@ -48,7 +48,7 @@ export default {
       return this.selectedCoach.description;
     },
   },
-  created() {
+  async created() {
     this.selectedCoach = this.$store.getters['coaches/coaches'].find(
       (coach) => coach.id === this.id
     );

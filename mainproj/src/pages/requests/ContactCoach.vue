@@ -14,6 +14,9 @@
       <button type="submit">Send Message</button>
     </div>
   </form>
+  <div class="loader">
+    <p v-if="isLoading">Loading...</p>
+  </div>
 </template>
 
 <script>
@@ -23,11 +26,13 @@ export default {
       email: '',
       message: '',
       formIsValid: true,
+      isLoading: false,
     };
   },
 
   methods: {
-    submitForm() {
+    async submitForm() {
+      this.isLoading = true;
       this.formIsValid = true;
       if (
         this.email === '' ||
@@ -43,9 +48,13 @@ export default {
         message: this.message,
         coachId: this.$route.params.id,
       };
-
-      this.$store.dispatch('requests/contactCoach', payload);
-      this.$router.replace('/requests');
+      try {
+        await this.$store.dispatch('requests/contactCoach', payload);
+        this.$router.replace('/requests');
+        this.isLoading = false;
+      } catch (error) {
+        alert(error.message || 'Somethingn went wrong');
+      }
     },
   },
 };
