@@ -1,37 +1,39 @@
 <template>
-  <section id="filter">
-    <div class="action-control">
-      <button @click="loadCoaches(true)">Refresh Coaches</button>
-      <base-button
-        v-if="!isLoading && !isCoach"
-        to="/register"
-        title="New Coach"
-      />
-    </div>
-    <div class="filter-control">
-      <coach-filter @change-filter="setFilters"></coach-filter>
-    </div>
-  </section>
+  <div>
+    <section id="filter">
+      <div class="action-control">
+        <button @click="loadCoaches(true)">Refresh Coaches</button>
+        <base-button
+          v-if="!isLoading && !isCoach"
+          to="/register"
+          title="New Coach"
+        />
+      </div>
+      <div class="filter-control">
+        <coach-filter @change-filter="setFilters"></coach-filter>
+      </div>
+    </section>
 
-  <section id="coaches">
-    <div v-if="isLoading">
-      <base-spinner></base-spinner>
-    </div>
-    <ul v-else-if="hasCoaches">
-      <coach-item
-        v-for="coach in filteredCoaches"
-        :key="coach.id"
-        :first-name="coach.firstName"
-        :last-name="coach.lastName"
-        :rate="coach.hourlyRate"
-        :description="coach.description"
-        :areas="coach.areas"
-        :id="coach.id"
-      ></coach-item>
-    </ul>
+    <section id="coaches">
+      <div v-if="isLoading">
+        <base-spinner></base-spinner>
+      </div>
+      <ul v-else-if="hasCoaches">
+        <coach-item
+          v-for="coach in filteredCoaches"
+          :key="coach.id"
+          :first-name="coach.firstName"
+          :last-name="coach.lastName"
+          :rate="coach.hourlyRate"
+          :description="coach.description"
+          :areas="coach.areas"
+          :id="coach.id"
+        ></coach-item>
+      </ul>
 
-    <h3 v-else>No Coaches Found!</h3>
-  </section>
+      <h3 v-else>No Coaches Found!</h3>
+    </section>
+  </div>
 </template>
 
 <script>

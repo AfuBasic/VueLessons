@@ -1,19 +1,21 @@
 <template>
-  <base-card>
-    <h2>{{ fullName }}</h2>
-    <h3>${{ rate }}/hr</h3>
-  </base-card>
-  <base-card>
-    <div>
-      <h2>Interested? Reach out now!</h2>
-      <router-link :to="contactLink">Contact</router-link>
-      <router-view></router-view>
-    </div>
-  </base-card>
-  <base-card>
-    <base-label v-for="area in areas" :key="area" :title="area"></base-label>
-    <p>{{ description }}</p>
-  </base-card>
+  <div>
+    <base-card>
+      <h2>{{ fullName }}</h2>
+      <h3>${{ rate }}/hr</h3>
+    </base-card>
+    <base-card>
+      <div>
+        <h2>Interested? Reach out now!</h2>
+        <router-link :to="contactLink">Contact</router-link>
+        <router-view></router-view>
+      </div>
+    </base-card>
+    <base-card>
+      <base-label v-for="area in areas" :key="area" :title="area"></base-label>
+      <p>{{ description }}</p>
+    </base-card>
+  </div>
 </template>
 
 <script>
