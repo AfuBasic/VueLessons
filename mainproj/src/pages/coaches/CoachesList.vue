@@ -1,7 +1,7 @@
 <template>
   <section id="filter">
     <div class="action-control">
-      <button>Refresh Coaches</button>
+      <button @click="loadCoaches(true)">Refresh Coaches</button>
       <base-button
         v-if="!isLoading && !isCoach"
         to="/register"
@@ -87,10 +87,12 @@ export default {
       this.activeFilters = updatedFilters;
     },
 
-    async loadCoaches() {
+    async loadCoaches(refresh = false) {
       this.isLoading = true;
       try {
-        await this.$store.dispatch('coaches/loadCoaches');
+        await this.$store.dispatch('coaches/loadCoaches', {
+          forceRefresh: refresh,
+        });
       } catch (error) {
         const errorMsg = error.message || 'Something went wrong';
         alert(errorMsg);
