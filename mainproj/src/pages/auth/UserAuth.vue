@@ -1,6 +1,6 @@
 <template>
   <base-card>
-    <h2>Login</h2>
+    <h2>{{ mode === 'login' ? 'Login' : 'Signup' }}</h2>
     <form @submit.prevent="submitForm">
       <div class="form-control">
         <label for="email">Email</label>
@@ -12,7 +12,7 @@
         <input type="password" id="password" v-model="password" />
       </div>
 
-      <p v-if="formIsValid">Please ensure the email and password is valid</p>
+      <p v-if="!formIsValid">Please ensure the email and password is valid</p>
 
       <div>
         <button type="submit">{{ submitCaption }}</button>
@@ -56,6 +56,14 @@ export default {
         return;
       }
 
+      if (this.mode === 'login') {
+        //...
+      } else {
+        this.$store.dispatch('signup', {
+          email: this.email,
+          password: this.password,
+        });
+      }
       //send http request
     },
     switchAuthMode() {
