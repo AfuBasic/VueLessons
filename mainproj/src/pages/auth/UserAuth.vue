@@ -1,7 +1,8 @@
 <template>
   <base-card>
     <h2>{{ mode === 'login' ? 'Login' : 'Signup' }}</h2>
-    <form @submit.prevent="submitForm">
+    <base-spinner v-if="isLoading"></base-spinner>
+    <form v-else @submit.prevent="submitForm">
       <div class="form-control">
         <label for="email">Email</label>
         <input type="email" id="email" v-model.trim="email" />
@@ -32,6 +33,8 @@ export default {
       password: '',
       formIsValid: true,
       mode: 'login',
+      isLoading: false,
+      error: null,
     };
   },
 
@@ -46,7 +49,7 @@ export default {
   },
 
   methods: {
-    submitForm() {
+    async submitForm() {
       if (
         this.email === '' ||
         !this.email.includes('@') ||
@@ -56,15 +59,22 @@ export default {
         return;
       }
 
-      if (this.mode === 'login') {
-        //...
-      } else {
-        this.$store.dispatch('signup', {
-          email: this.email,
-          password: this.password,
-        });
+      this.isLoading = true;
+
+      try {
+        if (this.mode === 'login') {
+          //...
+        } else {
+          await this.$store.dispatch('signup', {
+            email: this.email,
+            password: this.password,
+          });
+        }
+      } catch (err) {
+        alert(err.message || 'Failed, Please try again later');
       }
-      //send http request
+
+      this.isLoading = false;
     },
     switchAuthMode() {
       if (this.mode === 'login') {

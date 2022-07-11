@@ -18,7 +18,9 @@ export default {
 
         if (!response.ok) {
             console.log(responseData);
-            const error = new Error(responseData.message || 'failed to authenticate');
+            const error = new Error(
+                responseData.error.message || 'failed to authenticate'
+            );
             throw error;
         }
 
