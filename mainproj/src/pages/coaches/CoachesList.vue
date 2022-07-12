@@ -4,7 +4,7 @@
       <div class="action-control">
         <button @click="loadCoaches(true)">Refresh Coaches</button>
         <base-button
-          v-if="!isLoading && !isCoach"
+          v-if="!isLoading && !isCoach && isLoggedIn"
           to="/register"
           title="New Coach"
         />
@@ -56,6 +56,9 @@ export default {
     };
   },
   computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    },
     filteredCoaches() {
       const coaches = this.$store.getters['coaches/coaches'];
       return coaches.filter((coach) => {
@@ -90,7 +93,6 @@ export default {
     },
 
     async loadCoaches(refresh = false) {
-      console.log(this.$store.getters.userId);
       this.isLoading = true;
       try {
         await this.$store.dispatch('coaches/loadCoaches', {

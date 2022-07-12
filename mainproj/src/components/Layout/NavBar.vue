@@ -2,10 +2,23 @@
   <div>
     <ul>
       <li><router-link to="/coaches">Coaches</router-link></li>
-      <li><router-link to="/requests">Requests</router-link></li>
+      <li v-if="isLoggedIn">
+        <router-link to="/requests">Requests</router-link>
+      </li>
+      <li v-else><router-link to="/auth">Login</router-link></li>
     </ul>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
+    },
+  },
+};
+</script>
 
 <style scoped>
 ul {
