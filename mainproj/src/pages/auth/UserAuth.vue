@@ -71,6 +71,7 @@ export default {
         } else {
           await this.$store.dispatch('signup', userPayload);
         }
+        this.$router.replace('/coaches');
       } catch (err) {
         alert(err.message || 'Failed, Please try again later');
       }

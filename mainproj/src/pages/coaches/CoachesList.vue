@@ -90,6 +90,7 @@ export default {
     },
 
     async loadCoaches(refresh = false) {
+      console.log(this.$store.getters.userId);
       this.isLoading = true;
       try {
         await this.$store.dispatch('coaches/loadCoaches', {
