@@ -34,7 +34,6 @@ export default {
       formIsValid: true,
       mode: 'login',
       isLoading: false,
-      error: null,
     };
   },
 
@@ -59,16 +58,18 @@ export default {
         return;
       }
 
+      const userPayload = {
+        email: this.email,
+        password: this.password,
+      };
+
       this.isLoading = true;
 
       try {
         if (this.mode === 'login') {
-          //...
+          await this.$store.dispatch('login', userPayload);
         } else {
-          await this.$store.dispatch('signup', {
-            email: this.email,
-            password: this.password,
-          });
+          await this.$store.dispatch('signup', userPayload);
         }
       } catch (err) {
         alert(err.message || 'Failed, Please try again later');
