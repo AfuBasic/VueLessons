@@ -8,6 +8,12 @@
           to="/register"
           title="New Coach"
         />
+
+        <base-button
+          v-if="!isLoggedIn"
+          to="/auth?redirect=register"
+          title="Login to Register as Coach"
+        />
       </div>
       <div class="filter-control">
         <coach-filter @change-filter="setFilters"></coach-filter>
