@@ -29,14 +29,15 @@ export default {
 
     async loadRequests(context) {
         const userId = context.rootGetters.userId;
-        const response = await fetch(`${baseUrl}/requests/${userId}.json`);
+        const token = context.rootGetters.token;
+        const response = await fetch(
+            `${baseUrl}/requests/${userId}.json?auth=${token}`
+        );
 
         const responseData = await response.json();
 
         if (!response.ok) {
-            const error = new Error(
-                responseData.message || 'An unkown error occured'
-            );
+            const error = new Error(responseData.error || 'An unkown error occured');
             throw error;
         }
 

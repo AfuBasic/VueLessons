@@ -12,10 +12,10 @@
           :message="request.messages"
         ></request-item>
       </ul>
-      <h3 v-else-if="hasRequests && !Loading">
+      <h3 v-else-if="hasRequests.length === 0">
         You haven't received any requests yet
       </h3>
-      <base-spinner v-else></base-spinner>
+      <base-spinner v-else-if="isLoading"></base-spinner>
     </base-card>
   </section>
 </template>
@@ -46,11 +46,14 @@ export default {
 
   methods: {
     async loadRequests() {
+      this.isLoading = true;
       try {
         await this.$store.dispatch('requests/loadRequests');
       } catch (error) {
         alert(error || 'Something went wrong, could not load requests');
       }
+
+      this.isLoading = false;
     },
   },
 
